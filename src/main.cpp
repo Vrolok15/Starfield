@@ -1,5 +1,6 @@
 #include <raylib.h>
 #include "star.h"
+#include <vector>
 
 int main() 
 {
@@ -10,7 +11,7 @@ int main()
     int speed = 10;
     int offset = 60;
     
-    Star stars[starCount] = {Star(offset)};
+    std::vector<Star> stars(starCount, Star(offset));
     
     InitWindow(screenWidth, screenHeight, "STARFIELD C++");
     SetTargetFPS(60);
