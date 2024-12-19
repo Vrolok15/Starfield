@@ -1,6 +1,7 @@
 #include <raylib.h>
 #include "star.h"
 #include <vector>
+#include <algorithm>
 
 int main() 
 {
@@ -24,6 +25,15 @@ int main()
     
     while (!WindowShouldClose())
     {
+        // Handle speed changes with mouse wheel
+        int wheel = GetMouseWheelMove();
+        if (wheel != 0) {
+            speed = std::min(100, std::max(5, speed + wheel * 5));
+            for (Star& star : stars) {
+                star.SetSpeed(speed);
+            }
+        }
+        
         for (Star& star : stars)
         {
             star.Update();

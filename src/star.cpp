@@ -46,3 +46,7 @@ void Star::Draw() const
         DrawCircle(screenPos.x, screenPos.y, r, WHITE);
     }
 }
+
+void Star::SetSpeed(int newSpeed) {
+    speed = newSpeed;
+}

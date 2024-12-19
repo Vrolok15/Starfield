@@ -8,6 +8,7 @@ public:
     void Init();
     void Update();
     void Draw() const;
+    void SetSpeed(int newSpeed);
 
 private:
     Vector3 position;
