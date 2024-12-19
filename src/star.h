@@ -11,6 +11,7 @@ public:
 
 private:
     Vector3 position;
+    Vector3 prevPos;
     int speed;
     int radius;
 };
