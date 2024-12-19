@@ -8,7 +8,7 @@ int main()
     
     constexpr int screenWidth = 800;
     constexpr int screenHeight = 800;
-    constexpr int starCount = 400;
+    constexpr int starCount = 1000;
     constexpr int minSpeed = 5;
     constexpr int maxSpeed = 50;
     
