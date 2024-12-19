@@ -1,4 +1,6 @@
 #include "star.h"
+#include <raylib.h>
+#include <cmath>
 
 Star::Star(int offset) 
     : position({0, 0, 0})
@@ -38,12 +40,18 @@ void Star::Draw() const
         GetScreenHeight()/2.0f + (prevPos.y / prevPos.z) * (GetScreenHeight()-offset*2)
     };
 
+    // Calculate distance from center of screen
+    float centerX = GetScreenWidth()/2.0f;
+    float centerY = GetScreenHeight()/2.0f;
+    float distFromCenter = sqrt(pow(screenPos.x - centerX, 2) + pow(screenPos.y - centerY, 2));
+
+    // Only draw if star is within border AND not too close to center
     if (screenPos.x > offset && screenPos.x < GetScreenWidth()-offset &&
-        screenPos.y > offset && screenPos.y < GetScreenHeight()-offset)
+        screenPos.y > offset && screenPos.y < GetScreenHeight()-offset &&
+        distFromCenter > 100)  // Adjust this value to change the size of the empty center
     {
-        DrawLineEx(prevScreenPos, screenPos, 1.0f, WHITE);
-        float r = radius * (GetScreenWidth() / position.z);
-        DrawCircle(screenPos.x, screenPos.y, r, WHITE);
+        float r = radius * (GetScreenWidth() / position.z) / 2;
+        DrawLineEx(prevScreenPos, screenPos, r, WHITE);
     }
 }
 

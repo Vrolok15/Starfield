@@ -6,9 +6,12 @@
 int main() 
 {
     
-    constexpr int screenWidth = 1280;
-    constexpr int screenHeight = 720;
-    constexpr int starCount = 800;
+    constexpr int screenWidth = 800;
+    constexpr int screenHeight = 800;
+    constexpr int starCount = 400;
+    constexpr int minSpeed = 5;
+    constexpr int maxSpeed = 50;
+    
     int speed = 10;
     int offset = 60;
     
@@ -28,7 +31,7 @@ int main()
         // Handle speed changes with mouse wheel
         int wheel = GetMouseWheelMove();
         if (wheel != 0) {
-            speed = std::min(100, std::max(5, speed + wheel * 5));
+            speed = std::min(maxSpeed, std::max(minSpeed, speed + wheel * 5));
             for (Star& star : stars) {
                 star.SetSpeed(speed);
             }
