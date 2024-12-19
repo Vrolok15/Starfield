@@ -2,11 +2,17 @@
 #include <raylib.h>
 
 Star::Star() 
-    : x(GetRandomValue(0, GetScreenWidth()))
-    , y(GetRandomValue(0, GetScreenHeight()))
+    : x(0)
+    , y(0)
     , speed(5)
-    , radius(15) 
+    , radius(5) 
 {
+}
+
+void Star::Init()
+{
+    x = GetRandomValue(0, GetScreenWidth());
+    y = GetRandomValue(0, GetScreenHeight());
 }
 
 void Star::Update() 

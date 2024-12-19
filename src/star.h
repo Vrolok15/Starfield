@@ -4,12 +4,13 @@ class Star
 {
 public:
     Star();
+    void Init();
     void Update();
     void Draw() const;
 
 private:
-    float x;
-    float y;
-    float speed;
-    float radius;
+    int x;
+    int y;
+    int speed;
+    int radius;
 };
