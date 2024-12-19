@@ -11,6 +11,7 @@ public:
 private:
     int x;
     int y;
+    int z;
     int speed;
     int radius;
 };
