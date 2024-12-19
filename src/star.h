@@ -4,7 +4,7 @@
 class Star
 {
 public:
-    Star();
+    Star(int offset);
     void Init();
     void Update();
     void Draw() const;
@@ -14,4 +14,5 @@ private:
     Vector3 prevPos;
     int speed;
     int radius;
+    int offset;
 };

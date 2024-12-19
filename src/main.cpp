@@ -8,9 +8,9 @@ int main()
     constexpr int screenHeight = 720;
     constexpr int starCount = 800;
     int speed = 10;
-int offset = 60;
+    int offset = 60;
     
-    Star stars[starCount];
+    Star stars[starCount] = {Star(offset)};
     
     InitWindow(screenWidth, screenHeight, "STARFIELD C++");
     SetTargetFPS(60);

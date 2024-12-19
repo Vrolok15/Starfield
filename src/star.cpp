@@ -1,16 +1,17 @@
 #include "star.h"
 
-Star::Star() 
+Star::Star(int offset) 
     : position({0, 0, 0})
     , speed(10)
-    , radius(1) 
+    , radius(1)
+    , offset(offset)
 {
 }
 
 void Star::Init()
 {
-    position.x = GetRandomValue(-(GetScreenWidth()-120), GetScreenWidth()-120);
-    position.y = GetRandomValue(-(GetScreenHeight()-120), GetScreenHeight()-120);
+    position.x = GetRandomValue(-(GetScreenWidth()-offset*2), GetScreenWidth()-offset*2);
+    position.y = GetRandomValue(-(GetScreenHeight()-offset*2), GetScreenHeight()-offset*2);
     position.z = GetRandomValue(0, GetScreenWidth());
     prevPos = position;
 }
@@ -28,17 +29,17 @@ void Star::Update()
 void Star::Draw() const
 {
     Vector2 screenPos = {
-        GetScreenWidth()/2.0f + (position.x / position.z) * (GetScreenWidth()-120),
-        GetScreenHeight()/2.0f + (position.y / position.z) * (GetScreenHeight()-120)
+        GetScreenWidth()/2.0f + (position.x / position.z) * (GetScreenWidth()-offset*2),
+        GetScreenHeight()/2.0f + (position.y / position.z) * (GetScreenHeight()-offset*2)
     };
     
     Vector2 prevScreenPos = {
-        GetScreenWidth()/2.0f + (prevPos.x / prevPos.z) * (GetScreenWidth()-120),
-        GetScreenHeight()/2.0f + (prevPos.y / prevPos.z) * (GetScreenHeight()-120)
+        GetScreenWidth()/2.0f + (prevPos.x / prevPos.z) * (GetScreenWidth()-offset*2),
+        GetScreenHeight()/2.0f + (prevPos.y / prevPos.z) * (GetScreenHeight()-offset*2)
     };
 
-    if (screenPos.x > 60 && screenPos.x < GetScreenWidth()-60 &&
-        screenPos.y > 60 && screenPos.y < GetScreenHeight()-60)
+    if (screenPos.x > offset && screenPos.x < GetScreenWidth()-offset &&
+        screenPos.y > offset && screenPos.y < GetScreenHeight()-offset)
     {
         DrawLineEx(prevScreenPos, screenPos, 1.0f, WHITE);
         float r = radius * (GetScreenWidth() / position.z);
