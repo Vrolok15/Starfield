@@ -4,8 +4,8 @@
 int main() 
 {
     
-    constexpr int screenWidth = 800;
-    constexpr int screenHeight = 600;
+    constexpr int screenWidth = 1280;
+    constexpr int screenHeight = 720;
     
     Star stars[100];
     

@@ -1,4 +1,5 @@
 #pragma once
+#include <raylib.h>
 
 class Star
 {
@@ -9,9 +10,7 @@ public:
     void Draw() const;
 
 private:
-    int x;
-    int y;
-    int z;
+    Vector3 position;
     int speed;
     int radius;
 };

@@ -1,10 +1,7 @@
 #include "star.h"
-#include <raylib.h>
 
 Star::Star() 
-    : x(0)
-    , y(0)
-    , z(0)
+    : position({0, 0, 0})
     , speed(5)
     , radius(5) 
 {
@@ -12,27 +9,27 @@ Star::Star()
 
 void Star::Init()
 {
-    x = GetRandomValue(0, GetScreenWidth());
-    y = GetRandomValue(0, GetScreenHeight());
-    z = GetScreenWidth();
+    position.x = GetRandomValue(-GetScreenWidth(), GetScreenWidth());
+    position.y = GetRandomValue(-GetScreenHeight(), GetScreenHeight());
+    position.z = GetRandomValue(0, GetScreenWidth());
 }
 
 void Star::Update() 
 {
-    z = z - speed;
-    if (z < 1)
+    position.z -= speed;
+    if (position.z < 1)
     {
         Init();
     }
 }
 
-float map(float value, float start1, float stop1, float start2, float stop2) {
-    return start2 + (stop2 - start2) * ((value - start1) / (stop1 - start1));
-}
-
 void Star::Draw() const
 {
-    float sx = map(float(x)/z, 0, 1, 0, GetScreenWidth());
-    float sy = map(float(y)/z, 0, 1, 0, GetScreenHeight());
-    DrawCircle(sx, sy, radius, WHITE);
+    // Project 3D position to 2D screen space
+    Vector2 screenPos = {
+        GetScreenWidth()/2.0f + (position.x / position.z) * GetScreenWidth(),
+        GetScreenHeight()/2.0f + (position.y / position.z) * GetScreenHeight()
+    };
+    
+    DrawCircle(screenPos.x, screenPos.y, radius, WHITE);
 }
